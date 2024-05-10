@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    include: "jwt"
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:jwt
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop # SessionFactoryr가 시작될 때 Drop, Create, Alter 종료될 때 Drop
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: ture
+        dialect: org.hibernate.dialect.H2Dialect
+      generate-ddl: true
+
