@@ -1,6 +1,7 @@
 package com.security.jwt.module.users.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.JoinColumn;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,7 @@ public class Authority {
     private String authorityName;
 
     @ManyToOne
+    @JoinColumn(name = "usersId")
     @JsonIgnore
     private Users users;
 }

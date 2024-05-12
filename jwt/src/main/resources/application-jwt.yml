@@ -1,2 +1,5 @@
-#jwt:
-#  secret: Q8Mk70M5gYFO5c8nPn7cMt1NPmedibTQCTuGedgrnjQ=
+jwt:
+  secret: Q8Mk70M5gYFO5c8nPn7cMt1NPmedibTQCTuGedgrnjQ=
+  token:
+    access-expiration-time: 1800000    # 12시간
+    refresh-expiration-time: 604800000   # 7일

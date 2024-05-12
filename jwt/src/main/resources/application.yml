@@ -2,27 +2,30 @@ spring:
   profiles:
     include: "jwt"
 
-  h2:
-    console:
-      enabled: true
-
   datasource:
-    url: jdbc:h2:mem:jwt
+    url: jdbc:h2:tcp://localhost:9092/~/test
     driver-class-name: org.h2.Driver
     username: sa
     password:
 
+  h2:
+    console: # H2 DB를 웹에서 관리할 수 있는 기능
+      enabled: true           # H2 Console 사용 여부
+      path: /h2-console       # H2 Console 접속 주소
+
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: h2
     hibernate:
-      ddl-auto: create-drop # SessionFactoryr가 시작될 때 Drop, Create, Alter 종료될 때 Drop
+      ddl-auto: update
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         format_sql: true
-        show_sql: ture
         dialect: org.hibernate.dialect.H2Dialect
-      generate-ddl: true
+    generate-ddl: true
+
+logging.level:
+  org.hibernate.SQL: debug
 

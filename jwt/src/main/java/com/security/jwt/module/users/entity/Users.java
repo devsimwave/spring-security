@@ -1,5 +1,9 @@
 package com.security.jwt.module.users.entity;
 
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +20,7 @@ public class Users {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID id;
+    private Long id;
 
     @Column(columnDefinition = "varchar(255)")
     private String email;
@@ -25,11 +28,13 @@ public class Users {
     @Column(columnDefinition = "varchar(255)")
     private String password;
 
-    @Column
     private String name;
 
-    @Column
     private boolean isActivated;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Authority> authorities;
+
 
 
 }
