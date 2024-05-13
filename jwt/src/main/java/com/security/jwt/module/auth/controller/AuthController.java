@@ -36,7 +36,7 @@ public class AuthController {
 
     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(body.getEmail(), body.getPassword());
 
-    // authenticate 메소드가 실행이 될 때 customUserDetailsService class의 loadUserByUsername 메소드가 실행
+    // authenticate 메소드가 실행이 될 때 UserDetailsService class의 loadUserByUsername 메소드가 실행
      Authentication authentication = authenticationManager.getObject().authenticate(authenticationToken);
 
       // authentication 객체를 SecurityContext에 저장
