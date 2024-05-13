@@ -77,6 +77,7 @@ public class JwtTokenProvider {
     try {
       logger.info("secretKey : " + Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
       return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+//      return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     } catch (ExpiredJwtException e) {
       throw new IllegalArgumentException("만료된 토큰입니다.");
     } catch (JwtException e) {

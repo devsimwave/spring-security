@@ -30,11 +30,6 @@ public class AuthController {
 //    this.authService = authService;
 //  }
 
-  @GetMapping("test")
-  public String test() {
-    String a = "sdfjdsfjls";
-    return "test";
-  }
 
   @PostMapping("login")
   public TokenDto login(@RequestBody LoginDto body) {
