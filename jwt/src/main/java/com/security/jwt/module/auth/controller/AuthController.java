@@ -24,12 +24,6 @@ public class AuthController {
   private final JwtTokenProvider jwtTokenProvider;
   private final AuthenticationManagerBuilder authenticationManager;
 
-//  private final AuthService authService;
-
-//  public AuthController(AuthService authService) {
-//    this.authService = authService;
-//  }
-
 
   @PostMapping("login")
   public TokenDto login(@RequestBody LoginDto body) {

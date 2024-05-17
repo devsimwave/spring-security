@@ -28,8 +28,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class JwtTokenProvider {
 
-//  private UserDetailsService
-
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   @Value("${jwt.secret}")
@@ -41,9 +39,8 @@ public class JwtTokenProvider {
   @Value("${jwt.token.refresh-expiration-time}")
   private long refreshExpirationTime;
 
-  private Key key;
 
-
+  //TODO refresh token 생성 로직 추가
   public String createToken(Authentication authentication) {
 
     String authorities = authentication.getAuthorities().stream()
@@ -73,10 +70,11 @@ public class JwtTokenProvider {
   }
 
   // 토큰의 유효성 검사
-  public Claims validateToken(String token) {
+  public boolean validateToken(String token) {
     try {
       logger.info("secretKey : " + Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
-      return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+      Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+      return true;
 //      return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     } catch (ExpiredJwtException e) {
       throw new IllegalArgumentException("만료된 토큰입니다.");

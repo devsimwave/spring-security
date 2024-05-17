@@ -24,10 +24,12 @@ public class JwtFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
 
+    /* jwt 토큰을 꺼내옵니다. */
     String token = jwtTokenProvider.resolveToken(request);
 
-    if(StringUtils.hasText(token)) {
-      jwtTokenProvider.validateToken(token).getSubject();
+    /* token을 갖고 있거나 토큰이 유효하거나 만료되었는지 체크한다.*/
+    if(StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
+
 
       Authentication authentication =  jwtTokenProvider.getAuthentication(token);
       // 토큰이 정상이면 토큰으로부터 유저 정보를 받아온다.

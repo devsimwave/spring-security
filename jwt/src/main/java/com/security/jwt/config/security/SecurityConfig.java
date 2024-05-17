@@ -3,6 +3,7 @@ package com.security.jwt.config.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -12,7 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @RequiredArgsConstructor
-@EnableWebSecurity
+@EnableWebSecurity                                          // Spring Security 필터가 스프링 필터 체인에 등록이 된다.
+@EnableGlobalMethodSecurity(prePostEnabled = true)          // 메소드 단위 권한 설정을 할 수 있다. @PreAuthorize, @PostAuthorize를 사용할 수 있음.
 public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -37,7 +39,6 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()    // HttpServletRequest를 사용하는 요청들에 대한 접근제한을 설정
                 .antMatchers("/auth/login").permitAll() // 모든 주소 허용
-                .antMatchers("/auth/test").permitAll() // 모든 주소 허용
                 .anyRequest().authenticated() // Authentication 필요한 주소
 
                 .and()                  // exception handling for jwt

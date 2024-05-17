@@ -1,5 +1,6 @@
 package com.security.jwt.module.users.service;
 
+import com.security.jwt.module.users.dto.UsersDto;
 import com.security.jwt.module.users.entity.Users;
 import com.security.jwt.module.users.repository.UsersRepository;
 import java.nio.ByteBuffer;
@@ -19,4 +20,10 @@ public class UsersService {
   }
 
 
+    public UsersDto getMe() {
+
+
+
+        return UsersDto.builder().email("test").password("test").name("test").build();
+    }
 }
