@@ -39,4 +39,5 @@ Spring Boot 실행 시 H2 인메모리 DB가 자동으로 생성됩니다.
 2.	테스트 데이터 로딩
 src/main/resources/data.sql 파일 내부의 SQL 문을 참고하여 사용자 데이터를 삽입합니다.
 3.	Spring Boot 애플리케이션 실행
+4.  postman 등 API 클라이언트를 사용하여 /api/auth/login 엔드포인트로 로그인 요청을 보냅니다.
 
