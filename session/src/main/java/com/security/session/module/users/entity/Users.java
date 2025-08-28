@@ -1,16 +1,15 @@
 package com.security.session.module.users.entity;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Getter
 @NoArgsConstructor
 public class Users {
-
     @Id
     @GeneratedValue
     private Long id;
