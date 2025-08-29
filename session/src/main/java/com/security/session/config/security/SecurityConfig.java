@@ -1,5 +1,7 @@
-package com.security.session.config;
+package com.security.session.config.security;
 
+import com.security.session.handler.FailureHandler;
+import com.security.session.handler.SuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,13 +34,15 @@ public class SecurityConfig {
 
                 .formLogin(form -> form
                         .loginPage("/users/login")    // 커스텀 로그인 페이지 경로
-                        .defaultSuccessUrl("/main", true) // 로그인 성공 시 이동할 경로
+                        .loginProcessingUrl("/login") // 로그인 처리 경로
+                        .successHandler(new SuccessHandler())
+                        .failureHandler(new FailureHandler())
                         .permitAll()            // 로그인 페이지는 모두 접근 허용
                 )
 
                 .logout(logout -> logout
                         .logoutUrl("/logout")   // 로그아웃 처리 경로)
-//                        .logoutSuccessUrl("/login") // 로그아웃 성공 시 이동할 경로
+                        .logoutSuccessUrl("/login") // 로그아웃 성공 시 이동할 경로
                         .invalidateHttpSession(true)    // 세션 무효화
                         .deleteCookies("JSESSIONID") // was 고유 세션 식별자인 JSESSIONID 쿠키 삭제
                         .permitAll()  // 로그아웃은 모두 접근 허용

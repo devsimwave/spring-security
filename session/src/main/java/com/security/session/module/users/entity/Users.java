@@ -10,6 +10,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 public class Users {
+
     @Id
     @GeneratedValue
     private Long id;

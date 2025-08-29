@@ -13,7 +13,7 @@ public class UsersController {
 
     @GetMapping("/login")
     public ModelAndView login(ModelAndView mv){
-        mv.setViewName("/auth/login");
+        mv.setViewName("auth/login");
         return mv;
     }
 }
