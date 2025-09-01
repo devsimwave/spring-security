@@ -2,7 +2,7 @@ package com.security.session.handler;
 
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-public class FailureHandler implements AuthenticationFailureHandler {
+public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, org.springframework.security.core.AuthenticationException exception) throws java.io.IOException, javax.servlet.ServletException {
         // 로그인 실패 후 처리 로직 작성
