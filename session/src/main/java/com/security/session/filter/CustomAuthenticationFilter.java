@@ -16,14 +16,19 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         super.setAuthenticationManager(authenticationManager);
     }
 
+    /**
+     * Spring Security 로그인 전송 시 AuthenticationFilter로 요청이 먼저 오게 되는데
+     * 아이디 비밀번호 기반으로 UsernamePasswordAuthenticationToken(인증 전) 생성한다.
+     * 최초 검증 로직을 위해 필터를 만든다.
+     *
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        log.info("username: {}, password: {}", username, password);
 
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password); // UserPasswordAuthenticationToken(인증 전) 생성
-        setDetails(request, authRequest);  // 요청 정보 부가 설정
-        return this.getAuthenticationManager().authenticate(authRequest); // AuthenticationManager를 통해 인증 처리
+        setDetails(request, authRequest);  // 요청 정보 부가 설정 클라이언의 요청 정보가 있다. 대표적으로 sessionId, IP주소 등이 있는데 보안 로그 기록, 추가 보안 정책, 인증 실패 분석 등에 활용한다.
+        return this.getAuthenticationManager().authenticate(authRequest); // AuthenticationManager를 UsernamePasswordAuthenticationToken을 넘겨 인증 시도
     }
 }
