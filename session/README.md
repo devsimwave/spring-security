@@ -26,12 +26,12 @@ Thymeleaf를 사용하여 간단한 로그인 페이지를 제공하며, Spring 
 ```
 🔐 인증 흐름
 1.	클라이언트가 /users/login 요청 (ID/PW)
-2.	2. `AuthenticationFilter`가 요청을 가로챈다. 이 때 가로챈 정보를 통해 `UsernamePasswordAuthenticationToken` 객체(사용자가 입력한 데이터를 기반으로 생성, 즉 현 상태는 미검증 Authentication)가 생성 후 AuthenticationManager에 전달
-3.	3. AuthenticationManager는 등록된 AuthenticationProvider들을 조회해 인증 요구
-4.  4. AuthenticationProvider는 UserDetailsService에서 입력 받은 아이디에 대한 정보를 DB로부터 조회함
-5.  5. UserDetailsService는 넘겨받은 정보를 통해 DB에서 찾은 사용자 정보인  `UserDetails` 객체를 생성
-6.  6. `AuthenticationProvider`는 `UserDetails`를 넘겨받고 사용자 정보를 비교
-3.	7. 인증이 완료되면, 인증된 UserNameAuthenticationToken을 AuthenticationManager로 반환함
+2.	CustomAuthenticationFilter가 요청을 가로챈다. 이 때 가로챈 정보를 통해 UsernamePasswordAuthenticationToken 객체(사용자가 입력한 데이터를 기반으로 생성, 즉 현 상태는 미검증 Authentication)가 생성 후 AuthenticationManager에 전달
+3.	AuthenticationManager는 등록된 AuthenticationProvider들을 조회해 인증 요구
+4.  AuthenticationProvider는 UserDetailsService에서 입력 받은 아이디에 대한 정보를 DB로부터 조회함
+5.  UserDetailsService는 넘겨받은 정보를 통해 DB에서 찾은 사용자 정보인  UserDetails 객체를 생성
+6.  AuthenticationProvider는 UserDetails를 넘겨받고 사용자 정보를 비교
+7.	인증이 완료되면, 인증된 UserNameAuthenticationToken을 AuthenticationManager로 반환함
 ```
 
 ---
